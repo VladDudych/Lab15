@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 5.2</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script>
+        function processText() {
+            let inputText = document.getElementById('inputText').value;
+
+            let words = inputText.split(/\s+/);
+
+            if (words.length >= 2) {
+                let secondWordLength = words[1].length;
+
+                let quotedWords = words.map(word => `"${word}"`).join(' ');
+
+                document.getElementById('secondWordLength').textContent = `Кількість літер у другому слові: ${secondWordLength}`;
+                document.getElementById('quotedWords').textContent = `Текст у лапках: ${quotedWords}`;
+            } else {
+                document.getElementById('secondWordLength').textContent = "У введеному тексті немає другого слова.";
+                document.getElementById('quotedWords').textContent = "";
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <h1>Лабораторна робота 5.2</h1>
+    
+    <h3>Вхідний текст</h3>
+    <textarea id="inputText" rows="10" cols="50">Це приклад тексту для перевірки.</textarea><br><br>
+    
+    <div class="button-container">
+        <button class="task-button" onclick="processText()">Обробити текст</button>
+    </div>
+    
+    <h3>Результати:</h3>
+    <p id="secondWordLength"></p>
+    <p id="quotedWords"></p>
+    <button class="task-button" onclick="window.location.href='index.html'">На головну</button>
+</body>
+</html>

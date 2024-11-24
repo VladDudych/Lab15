@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 5.1</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script>
+        function processText() {
+            let inputText = document.getElementById('inputText').value;
+
+            // Підрахунок кількості пар символів '+-'
+            let pairCount = (inputText.match(/\+\-/g) || []).length;
+
+            // Замінити кожен символ '*' на '/-'
+            let modifiedText = inputText.replace(/\*/g, '/-');
+
+            // Вивести результати
+            document.getElementById('pairCount').textContent = `Кількість пар символів '+-' : ${pairCount}`;
+            document.getElementById('modifiedText').textContent = `Модифікований текст: ${modifiedText}`;
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css"> <!-- додайте ваш CSS файл -->
+</head>
+<body>
+    <h1>Лабораторна робота 5.1</h1>
+    
+    <h3>Вхідний текст</h3>
+    <textarea id="inputText" rows="10" cols="50">Приклад тексту з символами +-, * та іншими знаками: +- * +-* +-- *++</textarea><br><br>
+    
+    <div class="button-container">
+        <button class="task-button" onclick="processText()">Обробити текст</button>
+    </div>
+    
+    <h3>Результати:</h3>
+    <p id="pairCount"></p>
+    <p id="modifiedText"></p>
+    <button class="task-button" onclick="window.location.href='index.html'">На головну</button>
+</body>
+</html>

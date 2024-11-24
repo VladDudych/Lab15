@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <link rel="stylesheet" href="style.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифрування тексту</title>
+</head>
+<body>
+    <h1>Програма шифрування</h1>
+
+    <h3>Вхідний текст</h3>
+    <textarea id="inputText" rows="10" cols="50" placeholder="Введіть текст для шифрування"></textarea><br><br>
+
+    <div class="button-container">
+        <button class="task-button" onclick="encryptText()">Зашифрувати текст</button>
+    </div>
+
+    <h3>Результат:</h3>
+    <p id="encryptedText"></p>
+
+    <script>
+        function encryptText() {
+            let inputText = document.getElementById('inputText').value;
+            let encryptedText = '';
+
+            const alphabet = 'абвгдеєжзиїйклмнопрстуфхцчшщьюя';
+
+            for (let i = 0; i < inputText.length; i++) {
+                let char = inputText[i];
+
+                if (alphabet.indexOf(char.toLowerCase()) !== -1) {
+                    let index = alphabet.indexOf(char.toLowerCase());
+                    let nextChar = alphabet[(index + 1) % alphabet.length];
+
+                    if (char === char.toUpperCase()) {
+                        nextChar = nextChar.toUpperCase();
+                    }
+
+                    encryptedText += nextChar;
+                } else {
+                    encryptedText += char; 
+                }
+            }
+
+            document.getElementById('encryptedText').textContent = `Зашифрований текст: ${encryptedText}`;
+        }
+    </script>
+    <button class="task-button" onclick="window.location.href='index.html'">На головну</button>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифрування тексту</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <h1>Програма шифрування: Перемішування букв у словах</h1>
+
+    <h3>Вхідний текст</h3>
+    <textarea id="inputText" rows="10" cols="50" placeholder="Введіть текст для шифрування..."></textarea><br><br>
+
+    <div class="button-container">
+        <button class="task-button" onclick="shuffleText()">Зашифрувати текст</button>
+    </div>
+
+    <h3>Результат:</h3>
+    <p id="shuffledText"></p>
+    <script>
+        function shuffleText() {
+            let inputText = document.getElementById('inputText').value;
+            if (inputText.trim() === "") {
+                alert("Будь ласка, введіть текст для шифрування.");
+                return;
+            }
+            let words = inputText.split(/\s+/);  
+            let shuffledWords = words.map(word => {
+                if (word.length > 2) {
+                    let middlePart = word.slice(1, -1); 
+                    let shuffledMiddle = shuffleString(middlePart); 
+                    return word[0] + shuffledMiddle + word[word.length - 1]; 
+                } else {
+                    return word;
+                }
+            });
+
+            let shuffledText = shuffledWords.join(' ');
+            document.getElementById('shuffledText').textContent = `Зашифрований текст: ${shuffledText}`;
+        }
+
+        function shuffleString(str) {
+            let arr = str.split('');
+            for (let i = arr.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]]; 
+            }
+            return arr.join('');
+        }
+    </script>
+    <button class="task-button" onclick="window.location.href='index.html'">На головну</button>
+</body>
+</html>
